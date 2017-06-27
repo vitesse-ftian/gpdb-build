@@ -18,9 +18,8 @@ sudo pip install setuptools
 
 echo '/usr/local/lib' > ./usrlocal.conf
 sudo mv ./usrlocal.conf /etc/ld.so.conf.d/
-sudo ldconfig -v
+sudo ldconfig
 
 git clone https://github.com/vitesse-ftian/gpdb.git
 git clone https://github.com/vitesse-ftian/gp-xerces.git
 git clone https://github.com/vitesse-ftian/incubator-madlib.git
-

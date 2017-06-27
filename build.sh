@@ -44,12 +44,18 @@ mkdir -p out
 rm -rf installed 
 mkdir -p installed
 
-echo "Building GPDB in dir $GPDB_BUILD_DIR, build branch $1"
+BUILD_BRANCH=$1
+if [ "x$1" == "x" ]; then 
+    echo "Use default branch: release"
+    BUILD_BRANCH=release
+fi
 
-(cd gpdb && git checkout $1)
-(cd gporca && git checkout $1)
-(cd gp-xerces && git checkout $1)
-(cd incubator-madlib && git checkout $1)
+echo "Building GPDB in dir $GPDB_BUILD_DIR, build branch $BUILD_BRANCH"
+
+(cd gpdb && git checkout $BUILD_BRANCH)
+(cd gporca && git checkout $BUILD_BRANCH)
+(cd gp-xerces && git checkout $BUILD_BRANCH)
+(cd incubator-madlib && git checkout $BUILD_BRANCH)
 
 (cd ext && bash ./build.sh)
 
@@ -65,12 +71,10 @@ start 'gp-xerces: ........'
 start 'gporca: ...........'
 (cd gporca && bash ./build.sh) >& out/gporca.out && pass || fail
 
-############################
-start 'postgis: ..........'
-(cd gpdb/contrib/postgis && \
-    ./configure --with-projdir=/usr/local --with-geosconfig=/usr/local/bin/geos-config --prefix=$GPDB_BUILD_DIR/installed) 2>&1 > out/postgis.out || fail
-(cd gpdb/contrib/postgis && \
-    make clean &&
-    make && \
-    make install ) 2>&1 >> out/postgis.out || fail
+###########################
+start 'ldconfig ..........'
+sudo ldconfig 2>&1 > out/ldconfig.out && pass || fail
 
+###########################
+start 'gpdb: .............'
+(cd gpdb && bash ./build.sh) >& out/gpdb.out && pass || fail

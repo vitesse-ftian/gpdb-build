@@ -1,7 +1,9 @@
-ext
 gpdb
 gporca
 gp-xerces
 incubator-madlib
 installed
 postgis
+out
+INSTALLDIR
+*.swp
