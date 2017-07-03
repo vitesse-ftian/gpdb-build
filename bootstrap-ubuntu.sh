@@ -1,6 +1,6 @@
 sudo apt-get update
 sudo apt-get install -y git vim tmux openssh-client openssh-server sudo
-sudo apt-get install -y flex bison autoconf libtool bzip2
+sudo apt-get install -y flex bison autoconf libtool bzip2 unzip
 sudo apt-get install -y libyaml-dev libreadline-dev zlib1g-dev libssl-dev
 sudo apt-get install -y python-dev libpython-dev
 sudo apt-get install -y libcurl4-openssl-dev
