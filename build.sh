@@ -83,6 +83,6 @@ start 'gpdb: .............'
 ###########################
 start 'postgis: ..........'
 (cd geospatial/postgis/build/postgis-2.1.5 \
-  && ./configure --with-pgconfig=$GPDB_BUILD_DIR/bin/pg_config --with-raster --without-topology --prefix=$GPDB_BUILD_DIR/installed \
+  && ./configure --with-pgconfig=$GPDB_BUILD_DIR/installed/bin/pg_config --with-raster --without-topology --prefix=$GPDB_BUILD_DIR/installed \
   && make USE_PGXS=1 clean all install) >& out/postgis.out && pass || fail
 
