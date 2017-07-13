@@ -2,8 +2,8 @@ gpdb
 gporca
 gp-xerces
 incubator-madlib
+geospatial
 installed
-postgis
 out
 INSTALLDIR
 *.swp

@@ -56,6 +56,7 @@ echo "Building GPDB in dir $GPDB_BUILD_DIR, build branch $BUILD_BRANCH"
 (cd gporca && git checkout $BUILD_BRANCH)
 (cd gp-xerces && git checkout $BUILD_BRANCH)
 (cd incubator-madlib && git checkout $BUILD_BRANCH)
+(cd geospatial && git checkout $BUILD_BRANCH)
 
 (cd ext && bash ./build.sh)
 
@@ -78,3 +79,10 @@ sudo ldconfig 2>&1 > out/ldconfig.out && pass || fail
 ###########################
 start 'gpdb: .............'
 (cd gpdb && bash ./build.sh) >& out/gpdb.out && pass || fail
+
+###########################
+start 'postgis: ..........'
+(cd geospatial/postgis/build/postgis-2.1.5 \
+  && ./configure --with-pgconfig=$GPDB_BUILD_DIR/bin/pg_config --with-raster --without-topology --prefix=$GPDB_BUILD_DIR/installed \
+  && make USE_PGXS=1 clean all install) >& out/postgis.out && pass || fail
+
