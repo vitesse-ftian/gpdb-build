@@ -46,8 +46,8 @@ mkdir -p installed
 
 BUILD_BRANCH=$1
 if [ "x$1" == "x" ]; then 
-    echo "Use default branch: release"
-    BUILD_BRANCH=release
+    echo "Use default branch: gpdb-r5" 
+    BUILD_BRANCH=gpdb-r5
 fi
 
 echo "Building GPDB in dir $GPDB_BUILD_DIR, build branch $BUILD_BRANCH"
