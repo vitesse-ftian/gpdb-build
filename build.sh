@@ -64,15 +64,21 @@ start 'gp-xerces: ........'
 
 ###########################
 start 'gporca: ...........'
-(cd gporca && bash ./build.sh) >& out/gporca.out && pass || fail
+(cd gporca && rm -fr ./build && mkdir ./build \
+	&& cd build \
+	&& cmake -D XERCES_INCLUDE_DIR=/usr/local/include -D XERCES_LIBRARY=/usr/local/lib/libxerces-c.so -D CMAKE_INSTALL_PREFIX=/usr/local .. \
+	&& make && sudo make install ) >& out/gporca.out && pass || fail
 
 ###########################
 start 'ldconfig ..........'
 sudo ldconfig 2>&1 > out/ldconfig.out && pass || fail
 
 ###########################
+# configure for debug build should be
+# ./configure --prefix=$GPDB_BUILD_DIR/installed --with-openssl --with-python --with-libxml --enable-debug --enable-cassert CFLAGS='-O0 -fno-inline' 
 start 'gpdb: .............'
-(cd gpdb && bash ./build.sh) >& out/gpdb.out && pass || fail
+(cd gpdb && ./configure --prefix=$GPDB_BUILD_DIR/installed --with-openssl --with-python --with-libxml CFLAGS='-O3' \
+	&& make && make install ) >& out/gpdb.out && pass || fail
 
 ###########################
 start 'postgis: ..........'
