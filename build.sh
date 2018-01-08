@@ -44,19 +44,13 @@ mkdir -p out
 rm -rf installed 
 mkdir -p installed
 
-BUILD_BRANCH=$1
-if [ "x$1" == "x" ]; then 
-    echo "Use default branch: gpdb-r5" 
-    BUILD_BRANCH=gpdb-r5
-fi
+echo "Building GPDB in dir $GPDB_BUILD_DIR" 
 
-echo "Building GPDB in dir $GPDB_BUILD_DIR, build branch $BUILD_BRANCH"
-
-(cd gpdb && git checkout $BUILD_BRANCH)
-(cd gporca && git checkout $BUILD_BRANCH)
-(cd gp-xerces && git checkout $BUILD_BRANCH)
-(cd incubator-madlib && git checkout $BUILD_BRANCH)
-(cd geospatial && git checkout $BUILD_BRANCH)
+(cd gpdb && git checkout 5X_STABLE)
+# (cd gporca && git checkout $BUILD_BRANCH)
+# (cd gp-xerces && git checkout $BUILD_BRANCH)
+# (cd incubator-madlib && git checkout $BUILD_BRANCH)
+# (cd geospatial && git checkout $BUILD_BRANCH)
 
 (cd ext && bash ./build.sh)
 
