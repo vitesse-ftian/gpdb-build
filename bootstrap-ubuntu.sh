@@ -13,7 +13,7 @@ sudo pip install psutil
 sudo pip install lockfile
 sudo pip install paramiko
 
-git clone https://github.com/vitesse-ftian/gpdb.git 
+git clone https://github.com/greenplum-db/gpdb.git 
 git clone https://github.com/greenplum-db/gporca.git
 git clone https://github.com/greenplum-db/gp-xerces.git
 git clone https://github.com/apache/madlib.git 
