@@ -14,7 +14,9 @@ sudo pip install lockfile
 sudo pip install paramiko
 
 git clone https://github.com/greenplum-db/gpdb.git 
+(cd gpdb; git checkout 5X_STABLE)
 git clone https://github.com/greenplum-db/gporca.git
+(cd gporca; git fetch --all --tags --prune; git checkout tags/v2.53.11)
 git clone https://github.com/greenplum-db/gp-xerces.git
 git clone https://github.com/apache/madlib.git 
 git clone https://github.com/greenplum-db/geospatial.git
