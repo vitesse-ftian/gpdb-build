@@ -7,11 +7,11 @@ sudo apt-get install -y libcurl4-openssl-dev
 sudo apt-get install -y libevent-dev libxml2 libxml2-dev libbz2-dev
 sudo apt-get install -y libapr1-dev
 sudo apt-get install -y python-pip
-sudo pip install --upgrade pip
-sudo pip install setuptools
-sudo pip install psutil
-sudo pip install lockfile
-sudo pip install paramiko
+sudo pip2 install --upgrade pip
+sudo pip2 install setuptools
+sudo pip2 install psutil
+sudo pip2 install lockfile
+sudo pip2 install paramiko
 
 git clone https://github.com/greenplum-db/gpdb.git 
 (cd gpdb; git checkout 5X_STABLE)
